@@ -1,7 +1,7 @@
 #get it to read CSV file
 import os
 import csv
-csvpath = "Resources/budget_data.csv"
+csvpath = "PyBank/Resources/budget_data.csv"
 
 #print
 print("Financial Analysis")
@@ -10,28 +10,23 @@ print("-------------------------------------------")
 # open csv
 with open(csvpath) as csvfile:
     data = csv.reader(csvfile, delimiter=",")
-
-    csvheader = next(data)
-    #print(f"CSV Header: {csvheader}")
+    next(data)
+    data = list(data)
 
     rowcount = 0
+    price = 0
+    avg = 0
     for row in data:
-        rowcount= rowcount + 1
-    print("Total Months: " + str(rowcount))
-    
+        rowcount += 1
+        price += int(row[1])
+        
+        for rowcount in data:
+            avg += (((row[1]+1)+row[1])/rowcount)
 
 
-       
 
+
+print("Total Months: " + str(rowcount))
+print("Total: " + "$" + str(price))      
+print("Average Change: " + "$" + str((avg)))
      
-
-
-
-
-#         #get number of months
-#         months = len()
-#         print ("Total Months: " + months)
-
-
-
-# find total number of months
