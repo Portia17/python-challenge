@@ -60,11 +60,10 @@ output_txt = (
     f'Greatest Decrease in Profits: {min_months} (${p_min})\n'
 )
 
-#print to a text file
 print(output_txt)
 with open(output, 'w') as Bank:
     Bank.write(output_txt)
-
+#print to a text file
 
 
 

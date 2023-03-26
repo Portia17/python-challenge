@@ -12,6 +12,7 @@ total_votes = 0
 winner = ""
 winning_votes = 0
 percent = []
+l_final = []
 
 with open(csvpath) as csvfile:
     data = csv.reader(csvfile, delimiter=",")
@@ -26,54 +27,50 @@ with open(csvpath) as csvfile:
         d_candidates[row [2]] += 1
 
 
-print(d_candidates)
+#print(d_candidates)
 
 
-# output_txt = (
-#     f'Election Results\n'
-#     f'-------------------------\n'
-#     f'Total Votes: {total_votes}\n'
-#     f'-------------------------\n'
-#)
-
-
-# for person in d_candidates:
-#     candidate_votes = d_candidates.get(person)
-#     # d_candidates[person]
-#     votes_percent = candidate_votes / total_votes * 100
-#     stmt = f'{person}: {votes_percent:.3f}%: {candidate_votes} '
-#     print(stmt)
+for person in d_candidates:
+    candidate_votes = d_candidates.get(person)
+    # d_candidates[person]
+    votes_percent = candidate_votes / total_votes * 100
+    stmt = f'{person}: {votes_percent:.3f}% ({candidate_votes}) '
+    l_final.append(stmt)
+    #print(stmt)
             
             
-#     if candidate_votes > winning_votes:
-#         winning_votes = candidate_votes
-#         winner = person
+    if candidate_votes > winning_votes:
+        winning_votes = candidate_votes
+        winner = person
 
-# print (winner)
+print(f'Election Results\n'
+    f'-------------------------\n'
+    f'Total Votes: {total_votes}\n'
+    f'-------------------------')
+
+print(*l_final, sep='\n')
+
+print(f'-------------------------\n'
+    f'Winner: {winner}')
 
 
-# with open(output, 'w') as outfile:
-#     outfile.write(
-#         f'Election Results\n'
-#         f'-------------------------\n'
-#         f'Total Votes: {total_votes}\n'
-#         f'-------------------------\n'
-#         f'{d_candidates}'
-#         f'-------------------------\n'
-#         f'Winner: {winner}'
-#     )
+
+
+with open(output, 'w') as outfile:
+    outfile.write(
+    f'Election Results\n'
+    f'-------------------------------------\n'
+    f'Total Votes: {total_votes}\n'
+    f'-------------------------------------\n')
+    for people in l_final:
+        outfile.write("%s\n" % people)
+    outfile.write(
+    f'-------------------------------------\n'
+    f'Winner: {winner}'
+
+    )
     
-    #print and write results
 
-    #loop to print candidate votes
-
-        #print candidate and their votes
-
-        #if statement to see if they win
-            #if votes > winner votes, set name as winner
-
-
-    #print winner
             
 
 
