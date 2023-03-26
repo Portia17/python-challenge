@@ -1,12 +1,12 @@
 
 #get it to read CSV fil
+import os
 import csv
 
 csvpath = "Resources/budget_data.csv"
-
+output = os.path.join("analysis", "budget_analysis.txt")
 #print
-print("Financial Analysis")
-print("-------------------------------------------")
+
 
 months = []
 total = []
@@ -34,15 +34,12 @@ with open(csvpath) as csvfile:
 month_count = len(months)
 total_pl = sum(total)
 
-print(f'Total months: {month_count}')
-print (f'Total Profit or Loss: ${total_pl}')
 #print(month_count)
 #print(total_pl)
 
 #get average
 avg = round((sum(differences)/ len(differences)), 2)
 
-print(f'Average Change: ${avg}')
 
 #getting mins and maxes
 p_max = max(differences)
@@ -52,11 +49,23 @@ p_min = min(differences)
 max_months = (months[differences.index(p_max) + 1])
 min_months = (months [differences.index(p_min) + 1])
 
-print(f'Greatest Increase in Profits: {max_months} (${p_max})')
-print(f'Greatest Decrease in Profits: {min_months} (${p_min})')
+
+output_txt = (
+    f"Financial Analysis\n"
+    f"-------------------------------------------\n"
+    f'Total months: {month_count}\n'
+    f'Total Profit or Loss: ${total_pl}\n'
+    f'Average Change: ${avg}\n'
+    f'Greatest Increase in Profits: {max_months} (${p_max})\n'
+    f'Greatest Decrease in Profits: {min_months} (${p_min})\n'
+)
+
+#print to a text file
+print(output_txt)
+with open(output, 'w') as Bank:
+    Bank.write(output_txt)
 
 
-# print("Total Months: " + str(rowcount))
-# print("Total: " + "$" + str(price))      
-# print("Average Change: " + "$" + str((avg)))
+
+
      
