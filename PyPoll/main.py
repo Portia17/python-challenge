@@ -3,7 +3,7 @@
 import os
 import csv
 
-csvpath = "Resources/election_data.csv"
+csvpath = os.path.join("..", "PyPoll", "Resources", "election_data.csv")
 output = os.path.join("analysis", "election_analysis.txt")
 
 d_candidates = {}
